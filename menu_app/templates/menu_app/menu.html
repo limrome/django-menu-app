@@ -1,0 +1,13 @@
+{% load static %}
+
+{% if menu_tree %}
+<nav class="menu {{ menu_name }}-menu">
+    <ul class="menu-root">
+        {% for node in menu_tree %}
+            {% include "menu_app/menu_node.html" %}
+        {% endfor %}
+    </ul>
+</nav>
+{% else %}
+<div class="menu-empty">Menu "{{ menu_name }}" not found</div>
+{% endif %}

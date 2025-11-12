@@ -1,0 +1,22 @@
+<li class="menu-item 
+    {% if node.is_active %}menu-item--active{% endif %} 
+    {% if node.children %}menu-item--has-children{% endif %}
+    {% if node.is_expanded %}menu-item--expanded{% endif %}">
+    
+    <a href="{{ node.item.get_absolute_url }}" 
+       class="menu-link {% if node.is_active %}menu-link--active{% endif %}">
+        {{ node.item.name }}
+        
+        {% if node.children %}
+            <span class="menu-arrow">▼</span>
+        {% endif %}
+    </a>
+    
+    {% if node.children and node.is_expanded %}
+    <ul class="menu-children">
+        {% for child in node.children %}
+            {% include "menu_app/menu_node.html" with node=child %}
+        {% endfor %}
+    </ul>
+    {% endif %}
+</li>
